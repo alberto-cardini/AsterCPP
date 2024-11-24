@@ -35,3 +35,9 @@ Then you run the command that acctually builds the program.
 cmake -S . -B build # use the current directory as source dir and create build 
 cmake --build build # compiles the project in the build folder
 ```
+
+# Come usare questa repo:
+
+- Lavora nel tuo branch e fai pull request?
+- altro
+- inoltre
