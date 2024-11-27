@@ -5,9 +5,9 @@
 #ifndef REDASTER_PROTOCOL_HPP
 #define REDASTER_PROTOCOL_HPP
 
-#endif //REDASTER_PROTOCOL_HPP
-
 template <typename T>
 class Protocol {
 
 };
+
+#endif //REDASTER_PROTOCOL_HPP
