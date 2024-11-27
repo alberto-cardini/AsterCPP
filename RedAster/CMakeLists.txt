@@ -49,7 +49,7 @@ else ()
     add_compile_options(-Og -g)
 endif ()
 
-include_directories(Core/Inc
+include_directories(
         Core/Inc
         Drivers/CMSIS/Include
         Drivers/STM32H7xx_HAL_Driver/Inc
@@ -58,7 +58,8 @@ include_directories(Core/Inc
         Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F
         Middlewares/Third_Party/FreeRTOS/Source/include
         Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2
-        Libs/SensorsLib/Inc)
+        Libs/SensorsLib/Inc
+        Libs/ProtocolLib/Inc)
 
 add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32H723xx)
 
