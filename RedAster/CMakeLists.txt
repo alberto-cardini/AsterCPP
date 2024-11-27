@@ -51,18 +51,45 @@ endif ()
 
 include_directories(
         Core/Inc
+
         Drivers/CMSIS/Include
+        Drivers/CMSIS/Device/ST/STM32H7xx/Include
+
         Drivers/STM32H7xx_HAL_Driver/Inc
         Drivers/STM32H7xx_HAL_Driver/Inc/Legacy
-        Drivers/CMSIS/Device/ST/STM32H7xx/Include
+
         Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F
         Middlewares/Third_Party/FreeRTOS/Source/include
         Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2
-        Libs/SensorsLib/Inc)
+
+        Middlewares/Third_Party/FatFs/src
+
+        Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc
+
+        Middlewares/ST/STM32_USB_Device_Library/Core/Inc
+
+        FATFS/App
+        FATFS/Target
+
+        USB_DEVICE/App
+        USB_DEVICE/Target
+
+        X-CUBE-MEMS1/Target
+
+        Libs/SensorsLib/Inc
+        Libs/ProtocolLib/Inc
+)
 
 add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32H723xx)
 
-file(GLOB_RECURSE SOURCES "Core/*.*" "Drivers/*.*" "Libs/*.*" "Middlewares/*.*")
+file(GLOB_RECURSE SOURCES
+        "Core/*.*"
+        "Drivers/*.*"
+        "Libs/*.*"
+        "Middlewares/*.*"
+        "USB_DEVICE/*.*"
+        "X-CUBE-MEMS1/*.*"
+        "FATFS/*.*")
 
 set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/STM32H723ZETX_FLASH.ld)
 
