@@ -58,8 +58,7 @@ include_directories(
         Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F
         Middlewares/Third_Party/FreeRTOS/Source/include
         Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2
-        Libs/SensorsLib/Inc
-        Libs/ProtocolLib/Inc)
+        Libs/SensorsLib/Inc)
 
 add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32H723xx)
 
