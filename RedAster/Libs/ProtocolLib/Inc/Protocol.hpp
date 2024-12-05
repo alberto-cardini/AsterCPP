@@ -16,8 +16,6 @@ extern "C" {
 #endif
 
 #include "Utils.hpp"
-#include "SPI.hpp"
-#include "I2C.hpp"
 
 class Protocol {
     virtual HAL_StatusTypeDef Transmit(Identity role, Mode transmit_mode, std::vector<uint8_t>& outgoing_buffer) const = 0;
