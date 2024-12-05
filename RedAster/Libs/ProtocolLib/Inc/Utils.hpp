@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <vector>
+#include <memory>
 
 enum class Mode {
     NON_BLOCKING, POLLING
