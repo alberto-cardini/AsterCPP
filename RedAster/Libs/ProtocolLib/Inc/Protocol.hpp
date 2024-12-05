@@ -18,8 +18,16 @@ extern "C" {
 #include "Utils.hpp"
 
 class Protocol {
+public:
+
     virtual HAL_StatusTypeDef Transmit(Identity role, Mode transmit_mode, std::vector<uint8_t>& outgoing_buffer) const = 0;
     virtual HAL_StatusTypeDef Receive(Identity role, Mode transmit_mode, std::vector<uint8_t>& incoming_buffer) = 0;
+
+    [[nodiscard]] auto get_timeout() const { return polling_timeout; };
+    void set_timeout(uint8_t polling_t) { polling_timeout = polling_t; };
+
+protected:
+    uint8_t polling_timeout {0};  // Timeout during the polling mode, given during the initialization.
 };
 
 #endif //REDASTER_PROTOCOL_HPP
