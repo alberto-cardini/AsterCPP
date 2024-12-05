@@ -15,22 +15,37 @@ extern "C" {
 }
 #endif
 
-#include <memory>
-#include <vector>
-#include "iostream"
 #include "Utils.hpp"
 #include "Protocol.hpp"
 
 class SPI : public Protocol{
 public:
-    explicit SPI(SPI_HandleTypeDef init, uint32_t polling_timeout = 0) : handler(std::make_unique<SPI_HandleTypeDef>(init)), polling_timeout(polling_timeout) {}
+    explicit SPI(SPI_HandleTypeDef init, uint32_t polling_timeout = 0) : handler(std::make_unique<SPI_HandleTypeDef>(init)) {}
 
+    /*
+     * @brief: Allow to transmit in non-blocking and polling mode implementing the two methods given by the HAL.
+     *         The protocol use DMA when transmits in non-blocking mode.
+     * @param: This param MUST be set as N_A, otherwise throw an exception.
+     * @param: Specify if non-blocking or polling mode as transmission mode.
+     * @param: Buffer to transmit.
+     *
+     * @retval: HAL status.
+     */
     HAL_StatusTypeDef Transmit(Identity role, Mode transmit_mode, std::vector<uint8_t>& buffer) const override;
+
+    /*
+     * @brief: Allow reception in non-blocking and polling mode implementing the two methods given by the HAL.
+     *         The protocol use DMA when receives in non-blocking mode.
+     * @param: This param MUST be set as N_A, otherwise throw an exception.
+     * @param: Specify if non-blocking or polling mode as reception mode.
+     * @param: Buffer to store the data received.
+     *
+     * @retval: HAL status.
+     */
     HAL_StatusTypeDef Receive(Identity role, Mode receive_mode, std::vector<uint8_t>& buffer) override;
 
 private:
     std::unique_ptr<SPI_HandleTypeDef> handler;
-    uint8_t polling_timeout;
 };
 
 
