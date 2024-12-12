@@ -16,11 +16,10 @@ extern "C" {
 #endif
 
 #include "Utils.hpp"
-#include "Protocol.hpp"
 
-class SPI : public Protocol{
+class SPI {
 public:
-    explicit SPI(SPI_HandleTypeDef init, uint32_t polling_timeout = 0) : handler(std::make_unique<SPI_HandleTypeDef>(init)) {}
+    explicit SPI(SPI_HandleTypeDef init, uint32_t polling_timeout = 0) : handler(std::make_unique<SPI_HandleTypeDef>(init)), polling_t(polling_timeout) {}
 
     /*
      * @brief: Allow to transmit in non-blocking and polling mode implementing the two methods given by the HAL.
@@ -31,7 +30,7 @@ public:
      *
      * @retval: HAL status.
      */
-    HAL_StatusTypeDef Transmit(Identity role, Mode transmit_mode, std::vector<uint8_t>& buffer) const override;
+    HAL_StatusTypeDef Transmit(Identity role, Mode transmit_mode, std::vector<uint8_t>& buffer) const;
 
     /*
      * @brief: Allow reception in non-blocking and polling mode implementing the two methods given by the HAL.
@@ -42,10 +41,11 @@ public:
      *
      * @retval: HAL status.
      */
-    HAL_StatusTypeDef Receive(Identity role, Mode receive_mode, std::vector<uint8_t>& buffer) override;
+    HAL_StatusTypeDef Receive(Identity role, Mode receive_mode, std::vector<uint8_t>& buffer);
 
 private:
     std::unique_ptr<SPI_HandleTypeDef> handler;
+    uint32_t polling_t;
 };
 
 
