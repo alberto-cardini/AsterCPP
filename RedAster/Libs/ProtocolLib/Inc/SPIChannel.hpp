@@ -17,9 +17,9 @@ extern "C" {
 
 #include "Utils.hpp"
 
-class SPI {
+class SPIChannel {
 public:
-    explicit SPI(SPI_HandleTypeDef init, uint32_t polling_timeout = 0) : handler(std::make_unique<SPI_HandleTypeDef>(init)), polling_t(polling_timeout) {}
+    explicit SPIChannel(SPI_HandleTypeDef init, uint32_t polling_timeout = 0) : handler(std::make_unique<SPI_HandleTypeDef>(init)), polling_t(polling_timeout) {}
 
     /*
      * @brief: Allow to transmit in non-blocking and polling mode implementing the two methods given by the HAL.

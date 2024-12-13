@@ -2,9 +2,9 @@
 // Created by Alberto Cardini on 21/11/24.
 //
 
-#include "I2C.hpp"
+#include "I2CChannel.hpp"
 
-HAL_StatusTypeDef I2C::Transmit(Identity role, Mode transmit_mode, std::vector<uint8_t> &buffer) const {
+HAL_StatusTypeDef I2CChannel::Transmit(Identity role, Mode transmit_mode, std::vector<uint8_t> &buffer) const {
     if (role == Identity::MASTER && transmit_mode == Mode::POLLING) {
         return HAL_I2C_Master_Transmit(handler.get(), buffer.front(), get_valid_ptr(buffer), size_in_byte(buffer), polling_t);
     }
@@ -25,7 +25,7 @@ HAL_StatusTypeDef I2C::Transmit(Identity role, Mode transmit_mode, std::vector<u
         throw std::logic_error("I2C transmission failed");
 }
 
-HAL_StatusTypeDef I2C::Receive(Identity role, Mode receive_mode, std::vector<uint8_t> &buffer) {
+HAL_StatusTypeDef I2CChannel::Receive(Identity role, Mode receive_mode, std::vector<uint8_t> &buffer) {
     if (role == Identity::MASTER && receive_mode == Mode::POLLING) {
         return HAL_I2C_Master_Receive(handler.get(), buffer.front(), get_valid_ptr(buffer), size_in_byte(buffer), polling_t);
     }

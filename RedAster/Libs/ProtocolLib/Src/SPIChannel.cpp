@@ -2,10 +2,10 @@
 // Created by Alberto Cardini on 21/11/24.
 //
 
-#include "SPI.hpp"
+#include "SPIChannel.hpp"
 
 
-HAL_StatusTypeDef SPI::Transmit(Identity role, Mode transmit_mode, std::vector<uint8_t> &buffer) const {
+HAL_StatusTypeDef SPIChannel::Transmit(Identity role, Mode transmit_mode, std::vector<uint8_t> &buffer) const {
     if (role == Identity::N_A && transmit_mode == Mode::POLLING) {
         return HAL_SPI_Transmit(handler.get(), get_valid_ptr(buffer), size_in_byte(buffer), polling_t);
     }
@@ -18,7 +18,7 @@ HAL_StatusTypeDef SPI::Transmit(Identity role, Mode transmit_mode, std::vector<u
         throw std::logic_error("Non-valid identity for the SPI Transmit operation");
 }
 
-HAL_StatusTypeDef SPI::Receive(Identity role, Mode receive_mode, std::vector<uint8_t> &buffer) {
+HAL_StatusTypeDef SPIChannel::Receive(Identity role, Mode receive_mode, std::vector<uint8_t> &buffer) {
     if (role == Identity::N_A && receive_mode == Mode::POLLING) {
         return HAL_SPI_Receive(handler.get(), get_valid_ptr(buffer), size_in_byte(buffer), polling_t);
     }
