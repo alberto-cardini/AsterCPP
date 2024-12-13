@@ -6,25 +6,32 @@
 #define SPILINK_H
 
 
+#include "Link.h"
 #include "SPIChannel.hpp"
 
-class SPILink {
+class SPILink : public Link{
 public:
-    SPILink(SPIChannel& channel, GPIO_TypeDef* csPort, uint16_t csPin)
+    SPILink(SPIChannel& channel, GPIO_TypeDef* csPort, uint16_t csPin, Mode modeTransmit)
         : spiChannel(channel), csPort(csPort), csPin(csPin) {
         status = HAL_OK;
+        modeTransmit = modeTransmit;
     }
 
+    /*
+     * @brief: Allow to transmit data to the e2e connection
+     * @param: Buffer to transmit.
+     *
+     * @retval: HAL status.
+     */
     HAL_StatusTypeDef Transmit(std::vector<uint8_t> &buffer);
 
 private:
     SPIChannel& spiChannel;
     GPIO_TypeDef* csPort;
     uint16_t csPin;
-    HAL_StatusTypeDef status;
 
-    void selectChip();
-    void deselectChip();
+    void selectChip() const;
+    void deselectChip() const;
 };
 
 
