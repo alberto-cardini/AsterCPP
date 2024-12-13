@@ -25,6 +25,9 @@ public:
      */
     HAL_StatusTypeDef Transmit(std::vector<uint8_t> &buffer);
 
+    //TODO Receive
+    //TODO TransmitReceive
+
 private:
     SPIChannel& spiChannel;
     GPIO_TypeDef* csPort;

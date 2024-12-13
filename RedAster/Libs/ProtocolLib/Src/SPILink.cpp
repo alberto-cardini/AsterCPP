@@ -6,9 +6,9 @@
 
 
 HAL_StatusTypeDef SPILink::Transmit(std::vector<uint8_t> &buffer) {
-    selectChip();       // Abilita CS
+    selectChip();
     status = spiChannel.Transmit(Identity::N_A, modeTransmit, buffer);
-    deselectChip();     // Disabilita CS
+    deselectChip();
     return status;
 }
 

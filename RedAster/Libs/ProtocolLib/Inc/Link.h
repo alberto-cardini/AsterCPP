@@ -16,7 +16,10 @@ protected:
 
 public:
     virtual ~Link() = default;
+
     virtual void Transmit() = 0;
+    virtual void Receive() = 0;
+    virtual void TransmitReceive() = 0;
 };
 
 #endif // CONNECTION_H
