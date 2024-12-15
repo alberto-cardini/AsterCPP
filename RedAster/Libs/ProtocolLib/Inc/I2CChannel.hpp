@@ -17,9 +17,9 @@ extern "C" {
 
 #include "Utils.hpp"
 
-class I2C {
+class I2CChannel {
 public:
-    explicit I2C(I2C_HandleTypeDef init, uint32_t polling_timeout = 0) : handler(std::make_unique<I2C_HandleTypeDef>(init)), polling_t(polling_timeout) {}
+    explicit I2CChannel(I2C_HandleTypeDef init, uint32_t polling_timeout = 0) : handler(std::make_unique<I2C_HandleTypeDef>(init)), polling_t(polling_timeout) {}
 
     /*
      * @brief: Allow to transmit in non-blocking and polling mode implementing the two methods given by the HAL.
